@@ -1,0 +1,191 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>polymerjs cheatsheet</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="main">
+
+  <h1>Polymer.js Cheat Sheet</h1>
+
+  <ul class="flex-container">
+
+    <li class="flex-item">
+      <h2>Polymer element interface</h2>
+
+      <span>Load polymer</span>
+      <pre><code>&lt;­script src="po­lym­er.m­in.js­"­>&lt;­/­scr­ipt­></code></pre>
+
+      <span>Load component</span>
+      <pre><code>&lt;link rel="im­por­t" href="x­-fo­o.h­tml­"­></code></pre>
+
+      <span>Declare component by its tag</span>
+      <pre><code>&lt;x-f­oo>­&lt;/x­-fo­o></code></pre>
+
+      <span>Published properties as attributes</span>
+      <pre><code>&lt;­x-foo attr color=­"­blu­e">&lt;­/x-­foo­></code></pre>
+      
+      <span>My foo is part of the light dom</span>
+      <pre><code>&lt;­x-f­oo>My foo&lt;/x­-fo­o></code></pre>
+
+      <span>Nested elements</span>            
+      <pre><code>&lt;­x-f­oo>­&lt;x-­bar­>&lt;/­x-b­ar>­&lt;/x­-fo­o></code></pre>
+
+      <span>Accessing published methods</span>
+      <pre><code>docu­men­t.q­uer­ySe­lec­to(­'x-­foo­').c­us­tom­Met­hod­();</code></pre>
+      
+      <span>Accessing published property</span>
+      <pre><code>docu­men­t.q­uer­ySe­lec­tor(­'x-­foo­').c­olor = 'red';</code></pre>
+
+      <span>Wait for the WebCom­pon­ent­sReady event before intera­cting with the element</span>
+      <pre><code>wind­ow.a­dd­Eve­ntL­ist­ene­r('­Web­Com­pon­ent­sRe­ady', functi­on(e) {
+  docume­nt.q­ue­ryS­ele­cto­r('­x-f­oo'­).b­arP­roperty = 'baz';­
+});</code></pre>
+    </li>
+
+
+    <li class="flex-item">
+      <h2>Element registration</h2>
+
+      <span>Define declaratively</span>
+      <pre><code>&lt;polymer-element name="tag-name" class="active" mycustomattr>
+      &lt;template>...&lt;/template>
+      &lt;script>Polymer('tag-name');&lt;/script>
+      &lt;/polymer-element></code></pre>
+
+      <span>Script refereced inside the element definition</span>
+      <pre><code>&lt;polymer-element name="tag-name">
+      &lt;template>...&lt;/template>
+      &lt;script src="path/to/tagname.js">&lt;/script>
+      &lt;/polymer-element></code></pre>
+
+      <span>Script comes before the element definition</span>
+      <pre><code>&lt;script src="path/to/tagname.js">&lt;/script>
+      &lt;polymer-element name="tag-name">
+      &lt;template>...&lt;/template>
+      &lt;/polymer-element></code></pre>
+
+      <span>No script</span>
+      <pre><code>&lt;polymer-element name="tag-name" constructor="TagName" noscript>
+      &lt;template>
+      &lt;!-- shadow DOM here -->
+      &lt;/template>
+      &lt;/polymer-element></code></pre>
+
+      <span>Pure JavaScript</span>
+      <pre><code>&lt;script>
+      Polymer('name-tag', {nameColor: 'red'});
+      var el = document.createElement('div');
+      el.innerHTML = '\
+      &lt;polymer-element name="name-tag" attributes="name">\
+      &lt;template>\
+      Hello &lt;span style="color:{{nameColor}}">{{name}}&lt;/span>\
+      &lt;/template>\
+      &lt;/polymer-element>';
+      // The custom elements polyfill can't see the &lt;polymer-element>
+      // unless you put it in the DOM.
+      document.body.appendChild(el);    
+      </script></code></pre>
+    </li>
+
+    <li class="flex-item">
+      <h2>Element lifecycle methods</h2>
+
+      <span>an instance of the element is created</span>
+      <pre><code>crea­ted()</code></pre>
+
+      <span>The &lt;po­lym­er-­ele­men­t&gt; has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc.)</span>
+      <pre><code>read­y()</code></pre>
+
+      <span>an instance was inserted into the document</span>
+      <pre><code>atta­che­d()</code></pre>
+
+      <span>an instance was removed from the document</span>
+      <pre><code>deta­che­d()</code></pre>
+
+      <span>an attribute was added, removed, or updated</span>
+      <pre><code>attr­ibu­teC­han­ged()</code></pre>
+    </li>
+
+    <li class="flex-item">
+      <h2>Expressions</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Filters</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Firing custom events</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Change watcher</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Event Mapping</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Element attributes</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Automatic node finding</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Extending elements</h2>
+    </li>
+
+    <li class="flex-item">
+      <h2>Template syntax</h2>
+    </li>
+
+  <!-- end flex-container -->
+  </ul>
+
+<!-- end main -->  
+</div>
+
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/jquery.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+<!-- build:js({app,.tmp}) scripts/main.js -->
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+</body>
+</html>
