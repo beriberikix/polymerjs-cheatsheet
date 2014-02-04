@@ -16,3 +16,7 @@ body {
   margin: 0;
   list-style: none;
 }
+
+.flex-item {
+  width: 300px;
+}

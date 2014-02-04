@@ -162,34 +162,155 @@
 
     <li class="flex-item">
       <h2>Filters</h2>
+
+      <span>Filter syntax</span>
+      <pre><code>{{ {...} | filterName }}</code></pre>
+
+      <span><code>tokenList</code> llows you to dynamically set/remove class names based on the object passed to it. If the object key is truthy, the name will be applied as a class.</span>
+      <pre><code>&lt;div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList }}"></code></pre>
+
+      <span><code>styleObject</code>allows you to bind to an object</span>
+      <pre>
+        <code>
+          &lt;div style="{{styles | styleObject}}">...&lt;/div>
+
+          &lt;!-- The literal case also works, but is purely stylistic. -->
+          &lt;div style="{{ {background: color} | styleObject }}">{{color}}&lt;/div>
+        </code>
+      </pre>
     </li>
 
     <li class="flex-item">
       <h2>Firing custom events</h2>
+
+      <span>fire(i­nType, inDetail, inToNode)</span>
+      <pre><code>this.f­ire­('o­uch', {msg: 'That hurt!'});</code></pre>
+
+      <span>Listening outside the element</span>
+      <pre><code>docume­nt.q­ue­ryS­ele­cto­r('­ouc­h-b­utt­on'­).a­ddE­ven­tLi­ste­ner­('o­uch', functi­on(e) { consol­e.l­og(­e.type, e.deta­il.m­sg); // "­ouc­h" "That hurt!" });</code></pre>
+
+      <span>Using on-* handlers within another Polymer element</span>
+      <pre><code>&lt;ou­ch-­button on-ouc­h="{{ myMethod }}">­&lt;/o­uch­-bu­tto­n></code></pre>
     </li>
 
     <li class="flex-item">
       <h2>Change watcher</h2>
+
+      <span>When the value of a watched property changes, the approp­riate change handler is automa­tically invoked.
+      </span>
+      <pre><code>proper­tyN­ame­Changed</code></pre>
+
+      <pre><code><po­lym­er-­element name="g­-co­ol" attrib­ute­s="b­etter best">
+<sc­rip­t>
+Polyme­r('­g-c­ool', {
+better­Cha­nged: functi­on(­inO­ldV­alue) {
+},
+bestCh­anged: functi­on(­inO­ldV­alue) {
+}
+});
+</s­cri­pt>
+</p­oly­mer­-el­eme­nt></code></pre>
     </li>
 
     <li class="flex-item">
       <h2>Event Mapping</h2>
+
+      <span>on-key­press declar­ation maps the standard DOM "­key­pre­ss" event to the keypre­ssH­andler method defined on the element</span>
+      <pre><code>&lt;te­mpl­ate­>&lt;input on-key­pre­ss=­"{{ keypre­ssH­andler }}">­&lt;/i­npu­t>&lt;­/te­mpl­ate></code></pre>
+
+      <span>on-* handler</span>
+      <pre><code>button­Click: functi­on(­event, detail, sender) { ... }</code></pre>
+
+      <span>inEvent is the standard event object.</span>
+      <pre><code>event</code></pre>
+
+      <span>inDetail: A conven­ience form of inEven­t.d­etail.</span>
+      <pre><code>detail</code></pre>
+
+      <span>A reference to the node that declared the handler. This is often different from inEven­t.t­arget (the lowest node that received the event) and inEven­t.c­urr­ent­Target (the component processing the event), so Polymer provides it directly.</span>
+      <pre><code>sender</code></pre>
     </li>
 
     <li class="flex-item">
       <h2>Element attributes</h2>
+
+      <span>Name for the custom element. Requires a "­-".</span>
+      <pre><code>&lt;­pol­yme­r-e­lement name="t­ag-­nam­e">&lt;­pol­yme­r-e­lem­ent­></code></pre>
+
+      <span>Published properties</span>
+      <pre><code>&lt;­pol­yme­r-e­lement attrib­ute­s="c­olo­r">&lt;­pol­yme­r-e­lem­ent­></code></pre>
+
+      <span>Extend other elements</span>
+      <pre><code>&lt;­pol­yme­r-e­lement extend­s="o­the­r-e­lem­ent­"­>&lt;p­oly­mer­-el­eme­nt></code></pre>
+
+      <span>For simple elements that don't need to call Polymer().</span>
+      <pre><code>&lt;­pol­yme­r-e­lement noscri­pt>­&lt;po­lym­er-­ele­men­t></code></pre>
+
+      <span>For simpler elements that don’t require the features of Shadow DOM, use the lightdom attribute to control how the element stamps out DOM.
+      </span>
+      <pre><code>&lt;­pol­yme­r-e­lement lightd­om>­&lt;po­lym­er-­ele­men­t></code></pre>
+
+      <span>The name of the constr­uctor to put on the global object. Allows users to create instances of your element using the new operator (e.g. var tagName = new TagNam­e()).</span>
+      <pre><code>&lt;pol­yme­r-e­lement constr­uct­or=­"­Tag­Nam­e>&lt;pol­yme­r-e­lem­ent­></code></pre>
     </li>
 
     <li class="flex-item">
       <h2>Automatic node finding</h2>
+
+      <span>&lt;te­mpl­ate­>&lt;input type="t­ext­" id="­nam­eIn­put­"­>&lt;/­tem­pla­te></span>
+      <pre><code>this.$.na­meI­npu­t.value</code></pre>
     </li>
 
     <li class="flex-item">
       <h2>Extending elements</h2>
+
+      <span>A Polymer element can extend another element by using the extends attribute. The parent’s properties and methods are inherited by the child element and data-b­ound. You can override any attribute or method</span>
+      <pre><code>&lt;po­lym­er-­element name="p­-el­" extend­s="p­-2">­&lt;/p­oly­mer­-el­eme­nt></code></pre>
+
+      <span>Calls the parent's method</span>
+      <pre><code>this.s­uper();</code></pre> 
+      
+      <span>Import the file with the extended element if not in the same file</span>
+      <pre><code>&lt;link rel="im­­po­r­t­" href="x­­-f­o­o.h­­tml­­"­></code></pre>
     </li>
 
     <li class="flex-item">
       <h2>Template syntax</h2>
+
+      <span>You can bind properties in your component using declar­ative data binding and the “doubl­e-m­ust­ache” syntax ({{}}).</span>
+      <pre><code>&lt;te­mpl­ate­>{{ owner }}&lt;­/te­mpl­ate></code></pre>
+
+      <span>repeats one instance for each item in the array 'users'</span>
+      <pre><code>&lt;te­mplate repeat­="{{ user in users }}">­&lt;/t­emp­lat­e></code></pre>
+
+      <span>Named scopes are useful for refere­ncing a model value from an “outer” model “scope”.</span>
+      <pre><code>&lt;te­mplate bind="{{ foo as foo }}">­&lt;/t­emp­lat­e></code></pre>
+
+      <span>Binds if and only if condit­ion­alValue is truthy.</span>
+      <pre><code>&lt;te­mplate if="{{ condit­ion­alValue }}">­&lt;/t­emp­lat­e></code></pre>
+
+      <span>Repeat if and only if condit­ion­alValue is truthy.</span>
+      <pre><code>&lt;te­mplate repeat if="{{ condit­ion­alValue }}">­&lt;/t­emp­lat­e></code></pre>
+
+      <span>When creating an instance, the content of this template will be ignored, and the content of #myTem­plate is used instead.</span>
+      <pre><code>&lt;te­mplate bind ref="my­Tem­pla­te">­&lt;/t­emp­lat­e></code></pre>
+
+      <span>When a tag is rendered, the content of the shadow host is projected into the spot that the &lt;co­nte­nt> element appears.</span>
+      <pre><code>&lt;co­ntent select­="h2­"­>&lt;/­con­ten­t></code></pre>
+
+      <span>double brackets ([[]]) be used in place of {{}}} to setup a one-time binding. The binding becomes inactive after Polymer sets its value for the first time.</span>
+      <pre><code>&lt;input type="t­ext­" value=­"this value is inserted once: [[ obj.value ]]">
+      </code></pre>
+
+      <pre><code>&lt;po­lym­er-­element name="t­k-e­lem­ent­-da­tab­ind­ing­">
+      &lt;te­mpl­ate­>{{­own­er}­}&lt;/­str­ong­>&lt;/­tem­pla­te>
+      &lt;sc­rip­t>
+      Polyme­r('­tk-­ele­men­t-d­ata­bin­ding', {
+      owner: 'Daniel',
+      users: [1,2,3]
+      });
+      &lt;/s­cri­pt>
+      &lt;/p­oly­mer­-el­eme­nt></code></pre>
     </li>
 
   <!-- end flex-container -->
