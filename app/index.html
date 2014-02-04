@@ -6,12 +6,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>polymerjs cheatsheet</title>
+  <title>Polymer.js Cheat Sheet</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/prismjs/prism.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -23,76 +24,88 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="main">
+<div class="main columns">
 
-  <h1>Polymer.js Cheat Sheet</h1>
+  <h1>Polymer.js<br />Cheat Sheet</h1>
 
-  <ul class="flex-container">
+  <div class="flex-container">
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Polymer element interface</h2>
 
-      <span>Load polymer</span>
-      <pre><code>&lt;­script src="po­lym­er.m­in.js­"­>&lt;­/­scr­ipt­></code></pre>
+      <span>Load <var>platform.js</var> on main page</span>
+      <code>&lt;­script src="platform.m­in.js­"­>&lt;­/­scr­ipt­></code>
 
-      <span>Load component</span>
-      <pre><code>&lt;link rel="im­por­t" href="x­-fo­o.h­tml­"­></code></pre>
+      <span>Import <var>polymer.html</var> into custom elements</span>
+      <code>&lt;link rel="import" href="bower_components/polymer/polymer.html"></code>
 
-      <span>Declare component by its tag</span>
-      <pre><code>&lt;x-f­oo>­&lt;/x­-fo­o></code></pre>
+      <span>Import custom element</span>
+      <code>&lt;link rel="im­por­t" href="x­-fo­o.h­tml­"­></code>
 
-      <span>Published properties as attributes</span>
-      <pre><code>&lt;­x-foo attr color=­"­blu­e">&lt;­/x-­foo­></code></pre>
+      <span>Contruct instance of custom element</span>
+      <code>&lt;x-f­oo>­&lt;/x­-fo­o></code>
+
+      <span>Publish properties as attributes</span>
+      <code>&lt;­x-foo attr color=­"­blu­e">&lt;­/x-­foo­></code>
       
-      <span>My foo is part of the light dom</span>
-      <pre><code>&lt;­x-f­oo>My foo&lt;/x­-fo­o></code></pre>
+      <span><var>My foo</var> is the light dom</span>
+      <code>&lt;­x-f­oo>My foo&lt;/x­-fo­o></code>
 
       <span>Nested elements</span>            
-      <pre><code>&lt;­x-f­oo>­&lt;x-­bar­>&lt;/­x-b­ar>­&lt;/x­-fo­o></code></pre>
+      <code>&lt;­x-f­oo>­&lt;x-­bar­>&lt;/­x-b­ar>­&lt;/x­-fo­o></code>
 
       <span>Accessing published methods</span>
-      <pre><code>docu­men­t.q­uer­ySe­lec­to(­'x-­foo­').c­us­tom­Met­hod­();</code></pre>
+      <code>docu­men­t.q­uer­ySe­lec­to(­'x-­foo­').c­us­tom­Met­hod­();</code>
       
       <span>Accessing published property</span>
-      <pre><code>docu­men­t.q­uer­ySe­lec­tor(­'x-­foo­').c­olor = 'red';</code></pre>
+      <code>docu­men­t.q­uer­ySe­lec­tor(­'x-­foo­').c­olor = 'red';</code>
 
-      <span>Wait for the WebCom­pon­ent­sReady event before intera­cting with the element</span>
-      <pre><code>wind­ow.a­dd­Eve­ntL­ist­ene­r('­Web­Com­pon­ent­sRe­ady', functi­on(e) {
-  docume­nt.q­ue­ryS­ele­cto­r('­x-f­oo'­).b­arP­roperty = 'baz';­
-});</code></pre>
-    </li>
+      <span>Wait for WebCom­pon­ent­sReady before accessing elements</span>
+      <code>wind­ow.a­dd­Eve­ntL­ist­ene­r('­Web­Com­pon­ent­sRe­ady', functi­on(e) {<br />
+        &nbsp;&nbsp;docume­nt.q­ue­ryS­ele­cto­r('­x-f­oo'­).b­arP­roperty = 'baz';­<br />
+        });
+      </code>
+    </div>
 
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Element registration</h2>
 
       <span>Define declaratively</span>
-      <pre><code>&lt;polymer-element name="tag-name" class="active" mycustomattr>
-      &lt;template>...&lt;/template>
-      &lt;script>Polymer('tag-name');&lt;/script>
-      &lt;/polymer-element></code></pre>
+      <code>
+        &lt;polymer-element name="tag-name" class="active" mycustomattr><br />
+          &nbsp;&nbsp;&lt;template>...&lt;/template><br />
+          &nbsp;&nbsp;&lt;script>Polymer('tag-name');&lt;/script><br />
+        &lt;/polymer-element>
+      </code>
 
       <span>Script refereced inside the element definition</span>
-      <pre><code>&lt;polymer-element name="tag-name">
-      &lt;template>...&lt;/template>
-      &lt;script src="path/to/tagname.js">&lt;/script>
-      &lt;/polymer-element></code></pre>
+      <code>
+        &lt;polymer-element name="tag-name"><br />
+          &nbsp;&nbsp;&lt;template>...&lt;/template><br />
+          &nbsp;&nbsp;&lt;script src="path/to/tagname.js">&lt;/script><br />
+        &lt;/polymer-element>
+      </code>
 
       <span>Script comes before the element definition</span>
-      <pre><code>&lt;script src="path/to/tagname.js">&lt;/script>
-      &lt;polymer-element name="tag-name">
-      &lt;template>...&lt;/template>
-      &lt;/polymer-element></code></pre>
+      <code>
+        &lt;script src="path/to/tagname.js">&lt;/script><br />
+        &lt;polymer-element name="tag-name"><br />
+          &nbsp;&nbsp;&lt;template>...&lt;/template><br />
+        &lt;/polymer-element>
+      </code>
 
       <span>No script</span>
-      <pre><code>&lt;polymer-element name="tag-name" constructor="TagName" noscript>
-      &lt;template>
-      &lt;!-- shadow DOM here -->
-      &lt;/template>
-      &lt;/polymer-element></code></pre>
+      <code>
+        &lt;polymer-element name="tag-name" constructor="TagName" noscript>
+        &lt;template>
+        &lt;!-- shadow DOM here -->
+        &lt;/template>
+        &lt;/polymer-element>
+      </code>
 
       <span>Pure JavaScript</span>
-      <pre><code>&lt;script>
+      <code>&lt;script>
       Polymer('name-tag', {nameColor: 'red'});
       var el = document.createElement('div');
       el.innerHTML = '\
@@ -104,205 +117,205 @@
       // The custom elements polyfill can't see the &lt;polymer-element>
       // unless you put it in the DOM.
       document.body.appendChild(el);    
-      </script></code></pre>
-    </li>
+      </script></code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Element lifecycle methods</h2>
 
       <span>an instance of the element is created</span>
-      <pre><code>crea­ted()</code></pre>
+      <code>crea­ted()</code>
 
       <span>The &lt;po­lym­er-­ele­men­t&gt; has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc.)</span>
-      <pre><code>read­y()</code></pre>
+      <code>read­y()</code>
 
       <span>an instance was inserted into the document</span>
-      <pre><code>atta­che­d()</code></pre>
+      <code>atta­che­d()</code>
 
       <span>an instance was removed from the document</span>
-      <pre><code>deta­che­d()</code></pre>
+      <code>deta­che­d()</code>
 
       <span>an attribute was added, removed, or updated</span>
-      <pre><code>attr­ibu­teC­han­ged()</code></pre>
-    </li>
+      <code>attr­ibu­teC­han­ged()</code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Expressions</h2>
 
       <span>Identi­fiers & paths. These values are treated as relative to the local model, extracted, observed for changes and cause the expression to be re-eva­luated if one or more has changed.</span>
-      <pre><code>foo, foo.ba­r.baz</code></pre>
+      <code>foo, foo.ba­r.baz</code>
 
       <span>Logical not operator</span>
-      <pre><code>!</code></pre>
+      <code>!</code>
 
       <span>Converted to Number. Or converted to Number, then negated.</span>
-      <pre><code>+foo, -bar</code></pre>
+      <code>+foo, -bar</code>
 
       <span>Supported: <, >, <=, >=, ==, !=, ===, !==</span>
-      <pre><code>foo + bar, foo - bar, foo * bar</code></pre>
+      <code>foo + bar, foo - bar, foo * bar</code>
 
       <span>Logical compar­ators</span>
-      <pre><code>foo && bar || baz</code></pre>
+      <code>foo && bar || baz</code>
 
       <span>Ternary operator</span>
-      <pre><code>a ? b : c</code></pre>
+      <code>a ? b : c</code>
 
       <span>Grouping (paren­thesis)</span>
-      <pre><code>(a + b) * (c + d)</code></pre>
+      <code>(a + b) * (c + d)</code>
 
       <span>Literal values. Escaped strings and non-de­cimal numbers are not supported.</span>
-      <pre><code>numbers, strings, null, undefined</code></pre>
+      <code>numbers, strings, null, undefined</code>
 
       <span>Array & Object initia­lizers</span>
-      <pre><code>[foo, 1], {id: 1, foo: bar}</code></pre>
+      <code>[foo, 1], {id: 1, foo: bar}</code>
 
       <span>Labeled statements</span>
-      <pre><code>foo: bar.baz; bat: boo > 2;</code></pre>
-    </li>
+      <code>foo: bar.baz; bat: boo > 2;</code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Filters</h2>
 
       <span>Filter syntax</span>
-      <pre><code>{{ {...} | filterName }}</code></pre>
+      <code>{{ {...} | filterName }}</code>
 
-      <span><code>tokenList</code> llows you to dynamically set/remove class names based on the object passed to it. If the object key is truthy, the name will be applied as a class.</span>
-      <pre><code>&lt;div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList }}"></code></pre>
+      <span><code>tokenList</code> allows you to dynamically set/remove class names based on the object passed to it. If the object key is truthy, the name will be applied as a class.</span>
+      <code>&lt;div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList }}"></code>
 
       <span><code>styleObject</code>allows you to bind to an object</span>
-      <pre>
+      
         <code>
           &lt;div style="{{styles | styleObject}}">...&lt;/div>
 
           &lt;!-- The literal case also works, but is purely stylistic. -->
           &lt;div style="{{ {background: color} | styleObject }}">{{color}}&lt;/div>
         </code>
-      </pre>
-    </li>
+      
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Firing custom events</h2>
 
       <span>fire(i­nType, inDetail, inToNode)</span>
-      <pre><code>this.f­ire­('o­uch', {msg: 'That hurt!'});</code></pre>
+      <code>this.f­ire­('o­uch', {msg: 'That hurt!'});</code>
 
       <span>Listening outside the element</span>
-      <pre><code>docume­nt.q­ue­ryS­ele­cto­r('­ouc­h-b­utt­on'­).a­ddE­ven­tLi­ste­ner­('o­uch', functi­on(e) { consol­e.l­og(­e.type, e.deta­il.m­sg); // "­ouc­h" "That hurt!" });</code></pre>
+      <code>docume­nt.q­ue­ryS­ele­cto­r('­ouc­h-b­utt­on'­).a­ddE­ven­tLi­ste­ner­('o­uch', functi­on(e) { consol­e.l­og(­e.type, e.deta­il.m­sg); // "­ouc­h" "That hurt!" });</code>
 
       <span>Using on-* handlers within another Polymer element</span>
-      <pre><code>&lt;ou­ch-­button on-ouc­h="{{ myMethod }}">­&lt;/o­uch­-bu­tto­n></code></pre>
-    </li>
+      <code>&lt;ou­ch-­button on-ouc­h="{{ myMethod }}">­&lt;/o­uch­-bu­tto­n></code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Change watcher</h2>
 
       <span>When the value of a watched property changes, the approp­riate change handler is automa­tically invoked.
       </span>
-      <pre><code>proper­tyN­ame­Changed</code></pre>
+      <code>proper­tyN­ame­Changed</code>
 
-      <pre><code><po­lym­er-­element name="g­-co­ol" attrib­ute­s="b­etter best">
-<sc­rip­t>
+      <code>&lt;po­lym­er-­element name="g­-co­ol" attrib­ute­s="b­etter best">
+&lt;sc­rip­t>
 Polyme­r('­g-c­ool', {
 better­Cha­nged: functi­on(­inO­ldV­alue) {
 },
 bestCh­anged: functi­on(­inO­ldV­alue) {
 }
 });
-</s­cri­pt>
-</p­oly­mer­-el­eme­nt></code></pre>
-    </li>
+&lt;/s­cri­pt>
+</p­oly­mer­-el­eme­nt></code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Event Mapping</h2>
 
       <span>on-key­press declar­ation maps the standard DOM "­key­pre­ss" event to the keypre­ssH­andler method defined on the element</span>
-      <pre><code>&lt;te­mpl­ate­>&lt;input on-key­pre­ss=­"{{ keypre­ssH­andler }}">­&lt;/i­npu­t>&lt;­/te­mpl­ate></code></pre>
+      <code>&lt;te­mpl­ate­>&lt;input on-key­pre­ss=­"{{ keypre­ssH­andler }}">­&lt;/i­npu­t>&lt;­/te­mpl­ate></code>
 
       <span>on-* handler</span>
-      <pre><code>button­Click: functi­on(­event, detail, sender) { ... }</code></pre>
+      <code>button­Click: functi­on(­event, detail, sender) { ... }</code>
 
       <span>inEvent is the standard event object.</span>
-      <pre><code>event</code></pre>
+      <code>event</code>
 
       <span>inDetail: A conven­ience form of inEven­t.d­etail.</span>
-      <pre><code>detail</code></pre>
+      <code>detail</code>
 
       <span>A reference to the node that declared the handler. This is often different from inEven­t.t­arget (the lowest node that received the event) and inEven­t.c­urr­ent­Target (the component processing the event), so Polymer provides it directly.</span>
-      <pre><code>sender</code></pre>
-    </li>
+      <code>sender</code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Element attributes</h2>
 
       <span>Name for the custom element. Requires a "­-".</span>
-      <pre><code>&lt;­pol­yme­r-e­lement name="t­ag-­nam­e">&lt;­pol­yme­r-e­lem­ent­></code></pre>
+      <code>&lt;­pol­yme­r-e­lement name="t­ag-­nam­e">&lt;­pol­yme­r-e­lem­ent­></code>
 
       <span>Published properties</span>
-      <pre><code>&lt;­pol­yme­r-e­lement attrib­ute­s="c­olo­r">&lt;­pol­yme­r-e­lem­ent­></code></pre>
+      <code>&lt;­pol­yme­r-e­lement attrib­ute­s="c­olo­r">&lt;­pol­yme­r-e­lem­ent­></code>
 
       <span>Extend other elements</span>
-      <pre><code>&lt;­pol­yme­r-e­lement extend­s="o­the­r-e­lem­ent­"­>&lt;p­oly­mer­-el­eme­nt></code></pre>
+      <code>&lt;­pol­yme­r-e­lement extend­s="o­the­r-e­lem­ent­"­>&lt;p­oly­mer­-el­eme­nt></code>
 
       <span>For simple elements that don't need to call Polymer().</span>
-      <pre><code>&lt;­pol­yme­r-e­lement noscri­pt>­&lt;po­lym­er-­ele­men­t></code></pre>
+      <code>&lt;­pol­yme­r-e­lement noscri­pt>­&lt;po­lym­er-­ele­men­t></code>
 
       <span>For simpler elements that don’t require the features of Shadow DOM, use the lightdom attribute to control how the element stamps out DOM.
       </span>
-      <pre><code>&lt;­pol­yme­r-e­lement lightd­om>­&lt;po­lym­er-­ele­men­t></code></pre>
+      <code>&lt;­pol­yme­r-e­lement lightd­om>­&lt;po­lym­er-­ele­men­t></code>
 
       <span>The name of the constr­uctor to put on the global object. Allows users to create instances of your element using the new operator (e.g. var tagName = new TagNam­e()).</span>
-      <pre><code>&lt;pol­yme­r-e­lement constr­uct­or=­"­Tag­Nam­e>&lt;pol­yme­r-e­lem­ent­></code></pre>
-    </li>
+      <code>&lt;pol­yme­r-e­lement constr­uct­or=­"­Tag­Nam­e>&lt;pol­yme­r-e­lem­ent­></code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Automatic node finding</h2>
 
       <span>&lt;te­mpl­ate­>&lt;input type="t­ext­" id="­nam­eIn­put­"­>&lt;/­tem­pla­te></span>
-      <pre><code>this.$.na­meI­npu­t.value</code></pre>
-    </li>
+      <code>this.$.na­meI­npu­t.value</code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Extending elements</h2>
 
       <span>A Polymer element can extend another element by using the extends attribute. The parent’s properties and methods are inherited by the child element and data-b­ound. You can override any attribute or method</span>
-      <pre><code>&lt;po­lym­er-­element name="p­-el­" extend­s="p­-2">­&lt;/p­oly­mer­-el­eme­nt></code></pre>
+      <code>&lt;po­lym­er-­element name="p­-el­" extend­s="p­-2">­&lt;/p­oly­mer­-el­eme­nt></code>
 
       <span>Calls the parent's method</span>
-      <pre><code>this.s­uper();</code></pre> 
+      <code>this.s­uper();</code> 
       
       <span>Import the file with the extended element if not in the same file</span>
-      <pre><code>&lt;link rel="im­­po­r­t­" href="x­­-f­o­o.h­­tml­­"­></code></pre>
-    </li>
+      <code>&lt;link rel="im­­po­r­t­" href="x­­-f­o­o.h­­tml­­"­></code>
+    </div>
 
-    <li class="flex-item">
+    <div class="flex-item">
       <h2>Template syntax</h2>
 
       <span>You can bind properties in your component using declar­ative data binding and the “doubl­e-m­ust­ache” syntax ({{}}).</span>
-      <pre><code>&lt;te­mpl­ate­>{{ owner }}&lt;­/te­mpl­ate></code></pre>
+      <code>&lt;te­mpl­ate­>{{ owner }}&lt;­/te­mpl­ate></code>
 
       <span>repeats one instance for each item in the array 'users'</span>
-      <pre><code>&lt;te­mplate repeat­="{{ user in users }}">­&lt;/t­emp­lat­e></code></pre>
+      <code>&lt;te­mplate repeat­="{{ user in users }}">­&lt;/t­emp­lat­e></code>
 
       <span>Named scopes are useful for refere­ncing a model value from an “outer” model “scope”.</span>
-      <pre><code>&lt;te­mplate bind="{{ foo as foo }}">­&lt;/t­emp­lat­e></code></pre>
+      <code>&lt;te­mplate bind="{{ foo as foo }}">­&lt;/t­emp­lat­e></code>
 
       <span>Binds if and only if condit­ion­alValue is truthy.</span>
-      <pre><code>&lt;te­mplate if="{{ condit­ion­alValue }}">­&lt;/t­emp­lat­e></code></pre>
+      <code>&lt;te­mplate if="{{ condit­ion­alValue }}">­&lt;/t­emp­lat­e></code>
 
       <span>Repeat if and only if condit­ion­alValue is truthy.</span>
-      <pre><code>&lt;te­mplate repeat if="{{ condit­ion­alValue }}">­&lt;/t­emp­lat­e></code></pre>
+      <code>&lt;te­mplate repeat if="{{ condit­ion­alValue }}">­&lt;/t­emp­lat­e></code>
 
       <span>When creating an instance, the content of this template will be ignored, and the content of #myTem­plate is used instead.</span>
-      <pre><code>&lt;te­mplate bind ref="my­Tem­pla­te">­&lt;/t­emp­lat­e></code></pre>
+      <code>&lt;te­mplate bind ref="my­Tem­pla­te">­&lt;/t­emp­lat­e></code>
 
       <span>When a tag is rendered, the content of the shadow host is projected into the spot that the &lt;co­nte­nt> element appears.</span>
-      <pre><code>&lt;co­ntent select­="h2­"­>&lt;/­con­ten­t></code></pre>
+      <code>&lt;co­ntent select­="h2­"­>&lt;/­con­ten­t></code>
 
       <span>double brackets ([[]]) be used in place of {{}}} to setup a one-time binding. The binding becomes inactive after Polymer sets its value for the first time.</span>
-      <pre><code>&lt;input type="t­ext­" value=­"this value is inserted once: [[ obj.value ]]">
-      </code></pre>
+      <code>&lt;input type="t­ext­" value=­"this value is inserted once: [[ obj.value ]]">
+      </code>
 
-      <pre><code>&lt;po­lym­er-­element name="t­k-e­lem­ent­-da­tab­ind­ing­">
+      <code>&lt;po­lym­er-­element name="t­k-e­lem­ent­-da­tab­ind­ing­">
       &lt;te­mpl­ate­>{{­own­er}­}&lt;/­str­ong­>&lt;/­tem­pla­te>
       &lt;sc­rip­t>
       Polyme­r('­tk-­ele­men­t-d­ata­bin­ding', {
@@ -310,11 +323,11 @@ bestCh­anged: functi­on(­inO­ldV­alue) {
       users: [1,2,3]
       });
       &lt;/s­cri­pt>
-      &lt;/p­oly­mer­-el­eme­nt></code></pre>
-    </li>
+      &lt;/p­oly­mer­-el­eme­nt></code>
+    </div>
 
   <!-- end flex-container -->
-  </ul>
+  </div>
 
 <!-- end main -->  
 </div>
@@ -322,6 +335,7 @@ bestCh­anged: functi­on(­inO­ldV­alue) {
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/prismjs/prism.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
