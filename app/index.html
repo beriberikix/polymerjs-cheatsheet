@@ -128,6 +128,36 @@
 
     <li class="flex-item">
       <h2>Expressions</h2>
+
+      <span>Identi­fiers & paths. These values are treated as relative to the local model, extracted, observed for changes and cause the expression to be re-eva­luated if one or more has changed.</span>
+      <pre><code>foo, foo.ba­r.baz</code></pre>
+
+      <span>Logical not operator</span>
+      <pre><code>!</code></pre>
+
+      <span>Converted to Number. Or converted to Number, then negated.</span>
+      <pre><code>+foo, -bar</code></pre>
+
+      <span>Supported: <, >, <=, >=, ==, !=, ===, !==</span>
+      <pre><code>foo + bar, foo - bar, foo * bar</code></pre>
+
+      <span>Logical compar­ators</span>
+      <pre><code>foo && bar || baz</code></pre>
+
+      <span>Ternary operator</span>
+      <pre><code>a ? b : c</code></pre>
+
+      <span>Grouping (paren­thesis)</span>
+      <pre><code>(a + b) * (c + d)</code></pre>
+
+      <span>Literal values. Escaped strings and non-de­cimal numbers are not supported.</span>
+      <pre><code>numbers, strings, null, undefined</code></pre>
+
+      <span>Array & Object initia­lizers</span>
+      <pre><code>[foo, 1], {id: 1, foo: bar}</code></pre>
+
+      <span>Labeled statements</span>
+      <pre><code>foo: bar.baz; bat: boo > 2;</code></pre>
     </li>
 
     <li class="flex-item">
