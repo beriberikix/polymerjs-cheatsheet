@@ -1,7 +1,8 @@
 body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+  background: #DDD;
+  color: #111111;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
 }
 
 .browsehappy {
@@ -15,8 +16,28 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-item {
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.columns{
+  -webkit-column-count: 3;
+  -webkit-column-gap: 10px; 
+  -webkit-column-rule: 0px dotted black;
+  -moz-column-count: 3;
+  -moz-column-gap: 10px;  
+  -moz-column-rule: 0px dotted black;
+  column-count: 3;
+  column-gap: 10px; 
+  column-rule: 0px dotted black;
+}
+
+h2 {
+  background-color: #AAA;
+  color: #FFF;
 }
