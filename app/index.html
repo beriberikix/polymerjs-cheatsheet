@@ -55,7 +55,7 @@
       <code>&lt;­x-f­oo>­&lt;x-­bar­>&lt;/­x-b­ar>­&lt;/x­-fo­o></code>
 
       <span>Accessing published methods</span>
-      <code>docu­men­t.q­uer­ySe­lec­to(­'x-­foo­').c­us­tom­Met­hod­();</code>
+      <code>docu­men­t.q­uer­ySe­lec­tor(­'x-­foo­').c­us­tom­Met­hod­();</code>
       
       <span>Accessing published property</span>
       <code>docu­men­t.q­uer­ySe­lec­tor(­'x-­foo­').c­olor = 'red';</code>
@@ -71,7 +71,7 @@
     <div class="flex-item">
       <h2>Element registration</h2>
 
-      <span>Define declaratively</span>
+      <span>Declaratively</span>
       <code>
         &lt;polymer-element name="tag-name" class="active" mycustomattr><br />
           &nbsp;&nbsp;&lt;template>...&lt;/template><br />
@@ -79,7 +79,7 @@
         &lt;/polymer-element>
       </code>
 
-      <span>Script refereced inside the element definition</span>
+      <span>Script referenced inside</span>
       <code>
         &lt;polymer-element name="tag-name"><br />
           &nbsp;&nbsp;&lt;template>...&lt;/template><br />
@@ -87,7 +87,7 @@
         &lt;/polymer-element>
       </code>
 
-      <span>Script comes before the element definition</span>
+      <span>Script referenced outside</span>
       <code>
         &lt;script src="path/to/tagname.js">&lt;/script><br />
         &lt;polymer-element name="tag-name"><br />
@@ -97,45 +97,49 @@
 
       <span>No script</span>
       <code>
-        &lt;polymer-element name="tag-name" constructor="TagName" noscript>
-        &lt;template>
-        &lt;!-- shadow DOM here -->
-        &lt;/template>
+        &lt;polymer-element name="tag-name" constructor="TagName" noscript><br />
+          &nbsp;&nbsp;&lt;template><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- shadow DOM here --><br />
+          &nbsp;&nbsp;&lt;/template><br />
         &lt;/polymer-element>
       </code>
 
       <span>Pure JavaScript</span>
-      <code>&lt;script>
-      Polymer('name-tag', {nameColor: 'red'});
-      var el = document.createElement('div');
-      el.innerHTML = '\
-      &lt;polymer-element name="name-tag" attributes="name">\
-      &lt;template>\
-      Hello &lt;span style="color:{{nameColor}}">{{name}}&lt;/span>\
-      &lt;/template>\
-      &lt;/polymer-element>';
-      // The custom elements polyfill can't see the &lt;polymer-element>
-      // unless you put it in the DOM.
-      document.body.appendChild(el);    
-      </script></code>
+      <code>
+        &lt;script><br />
+          &nbsp;&nbsp;Polymer('name-tag', {nameColor: 'red'});<br />
+          <br />
+          &nbsp;&nbsp;var el = document.createElement('div');<br />
+          <br />
+          &nbsp;&nbsp;el.innerHTML = '\<br />
+          &nbsp;&nbsp;&lt;polymer-element name="name-tag" attributes="name">\<br />
+          &nbsp;&nbsp;&lt;template>\<br />
+          &nbsp;&nbsp;Hello &lt;span style="color:{{nameColor}}">{{name}}&lt;/span>\<br />
+          &nbsp;&nbsp;&lt;/template>\<br />
+          &nbsp;&nbsp;&lt;/polymer-element>';<br />
+          <br />
+          &nbsp;&nbsp;// Insert into DOM for polyfill to see it<br />
+          &nbsp;&nbsp;document.body.appendChild(el);<br />  
+        &lt;/script>
+      </code>
     </div>
 
     <div class="flex-item">
       <h2>Element lifecycle methods</h2>
 
-      <span>an instance of the element is created</span>
+      <span>Instance created</span>
       <code>crea­ted()</code>
 
-      <span>The &lt;po­lym­er-­ele­men­t&gt; has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc.)</span>
+      <span>Fully prepared (e.g. Shadow DOM, observers, event listeners, etc.)</span>
       <code>read­y()</code>
 
-      <span>an instance was inserted into the document</span>
+      <span>Instance was inserted</span>
       <code>atta­che­d()</code>
 
-      <span>an instance was removed from the document</span>
+      <span>Instance was removed</span>
       <code>deta­che­d()</code>
 
-      <span>an attribute was added, removed, or updated</span>
+      <span>Attribute was added, removed, or updated</span>
       <code>attr­ibu­teC­han­ged()</code>
     </div>
 
